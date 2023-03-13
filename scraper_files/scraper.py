@@ -44,7 +44,6 @@ def scrape(sq):
     driver = setup_webriver()
     driver.get(sq.url_cheapest)
     time.sleep(12)
-    driver.get_screenshot_as_file("webdriver-screenshot.png")
     offer_texts = select_all_offers(driver)
     clean_info_extracted = [order_flight_info(i) for i in offer_texts]
     flight_info_list = [sq.compile_flight_info(i) for i in clean_info_extracted]
