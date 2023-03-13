@@ -2,8 +2,6 @@ import scraper
 import db_setup
 import sys
 
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     session = db_setup.configure()
     s = session()
@@ -18,4 +16,3 @@ if __name__ == '__main__':
         s.add(i)
     s.commit()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
