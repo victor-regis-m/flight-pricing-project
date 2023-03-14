@@ -1,11 +1,10 @@
 from airflow import DAG
-from airflow.operators.python import PythonOperator, BranchPythonOperator
 from airflow.operators.bash import BashOperator
-from datetime import datetime
+import pendulum
 
 scraper_dag = DAG(
     "scraper_dag",
-    start_date = datetime(2023, 3, 15, tz="UTC"),
+    start_date = pendulum.datetime(2023, 3, 15, tz="UTC"),
     schedule_interval="00 08 * * *",
     catchup=False,
 )
