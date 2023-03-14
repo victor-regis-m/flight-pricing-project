@@ -5,7 +5,7 @@ from datetime import datetime
 
 scraper_dag = DAG(
     "scraper_dag",
-    start_date = datetime(2023, 3, 4, tz="UTC"),
+    start_date = datetime(2023, 3, 15, tz="UTC"),
     schedule_interval="00 08 * * *",
     catchup=False,
 )
