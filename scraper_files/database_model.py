@@ -16,4 +16,5 @@ class FlightInfo(Base):
     departure_airport = Column(String)
     arrival_airport = Column(String)
     departure_datetime = Column(DateTime)
-    arrival_datetime = Column(DateTime)
+    arrival_datetime = Column(DateTime),
+    query_datetime = Column(DateTime)

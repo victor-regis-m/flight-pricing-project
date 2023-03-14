@@ -33,6 +33,7 @@ class SearchQuery:
         info['stops'] = extract_stop_number(info['stops'])
         info['departure_datetime'] = departure_datetime
         info['arrival_datetime'] = arrival_datetime
+        info['query_datetime'] = datetime.fromtimestamp(time.mktime(time.localtime()))
         return info
 
 def extract_stop_number(text):
@@ -48,7 +49,7 @@ def scrape(sq):
     clean_info_extracted = [order_flight_info(i) for i in offer_texts]
     flight_info_list = [sq.compile_flight_info(i) for i in clean_info_extracted]
     scraper_output = [convert_to_db_model(flight_info) for flight_info in flight_info_list]
-    print(len(scraper_output))
+    print("Scraper is done")
     return scraper_output
 
 
@@ -115,5 +116,6 @@ def convert_to_db_model(flight_info):
         departure_airport = flight_info["departure_airport"],
         arrival_airport = flight_info["arrival_airport"],
         departure_datetime = flight_info["departure_datetime"],
-        arrival_datetime = flight_info["arrival_datetime"]
+        arrival_datetime = flight_info["arrival_datetime"],
+        query_datetime = flight_info["query_datetime"]
     )
