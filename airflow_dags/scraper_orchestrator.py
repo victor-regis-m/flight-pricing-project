@@ -12,7 +12,7 @@ scraper_dag = DAG(
 origin_airport = "GRU"
 destination_airport = "BER"
 departure_date = "2023-09-15"
-command = f"python3 main.py {origin_airport} {destination_airport} {departure_date}"
+command = f"python3 /home/ubuntu/flight-pricing-project/scraper_files/main.py {origin_airport} {destination_airport} {departure_date}"
 
 venv_activation = "source ~/env/bin/activate"
 

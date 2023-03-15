@@ -6,8 +6,7 @@ import os
 import json
 
 def configure():
-    config_path = os.path.realpath(
-        os.path.join(os.getcwd(), "db_config.json"))
+    config_path = "/home/ubuntu/flight-pricing-project/scraper_files/db_config.json"
     db_settings = json.load(open(config_path))
     database_uri = f'postgresql+psycopg2://{db_settings["user"]}:{db_settings["password"]}@{db_settings["host"]}:{db_settings["port"]}/{db_settings["database"]}'
     engine = create_engine(database_uri, max_identifier_length=127, echo=True)
