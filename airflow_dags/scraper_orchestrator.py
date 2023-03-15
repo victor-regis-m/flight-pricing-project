@@ -16,7 +16,7 @@ command = f"python3 main.py {origin_airport} {destination_airport} {departure_da
 
 venv_activation = "source ~/env/bin/activate"
 
-files_directory = "cd ~/flight-pricing-project/scraper-files/"
+files_directory = "cd ~/flight-pricing-project/scraper_files/"
 
 venv = BashOperator(
     task_id='activate_venv',
