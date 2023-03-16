@@ -12,9 +12,11 @@ scraper_dag = DAG(
 origin_airport = "GRU"
 destination_airport = "BER"
 departure_date = "2023-09-15"
-command = f"~/flight-pricing-project/scraper-files/python3 main.py {origin_airport} {destination_airport} {departure_date}"
+command = f"python3 /home/ubuntu/flight-pricing-project/scraper_files/main.py {origin_airport} {destination_airport} {departure_date}"
 
 venv_activation = "source ~/env/bin/activate"
+
+files_directory = "cd ~/flight-pricing-project/scraper_files/"
 
 venv = BashOperator(
     task_id='activate_venv',
@@ -22,11 +24,19 @@ venv = BashOperator(
     dag=scraper_dag
 )
 
-run_this = BashOperator(
-    task_id='run_transport',
+change_dir = BashOperator(
+    task_id='change_dir',
+    bash_command=files_directory,
+    dag=scraper_dag
+)
+
+
+scraper = BashOperator(
+    task_id='run_scraper',
     bash_command=command,
     dag=scraper_dag
 )
 
-venv >> run_this
+venv.set_downstream(change_dir)
+change_dir.set_downstream(scraper)
 
