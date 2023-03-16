@@ -16,20 +16,11 @@ command = f"python3 /home/ubuntu/flight-pricing-project/scraper_files/main.py {o
 
 venv_activation = "source ~/env/bin/activate"
 
-files_directory = "cd ~/flight-pricing-project/scraper_files/"
-
 venv = BashOperator(
     task_id='activate_venv',
     bash_command=venv_activation,
     dag=scraper_dag
 )
-
-change_dir = BashOperator(
-    task_id='change_dir',
-    bash_command=files_directory,
-    dag=scraper_dag
-)
-
 
 scraper = BashOperator(
     task_id='run_scraper',
@@ -37,6 +28,4 @@ scraper = BashOperator(
     dag=scraper_dag
 )
 
-venv.set_downstream(change_dir)
-change_dir.set_downstream(scraper)
-
+venv.set_downstream(scraper)
