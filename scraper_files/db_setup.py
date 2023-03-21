@@ -1,8 +1,7 @@
 import sqlalchemy
-from sqlalchemy import create_engine, inspect,text
+from sqlalchemy import create_engine, inspect, text
 from sqlalchemy.orm import sessionmaker
 from database_model import Base, FlightInfo
-import os
 import json
 
 def configure():
