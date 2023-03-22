@@ -16,16 +16,13 @@ command = f"python3 /home/ubuntu/flight-pricing-project/scraper_files/main.py {o
 
 venv_activation = "source ~/env/bin/activate"
 
-venv = BashOperator(
-    task_id='activate_venv',
-    bash_command=venv_activation,
+final_command = f"{venv_activation} && {command}"
+
+
+task = BashOperator(
+    task_id='full_task',
+    bash_command=final_command,
     dag=scraper_dag
 )
 
-scraper = BashOperator(
-    task_id='run_scraper',
-    bash_command=command,
-    dag=scraper_dag
-)
-
-venv.set_downstream(scraper)
+task

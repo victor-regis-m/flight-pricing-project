@@ -36,7 +36,7 @@ def get_last_dag_number():
 
 
 def change_dag_name(lines, number):
-    dag_name_lines = [i for i in lines if re.search("scraper_dag", i)]
+    dag_name_lines = [i for i in lines if re.search("number", i)]
     dag_name_line = dag_name_lines[0]
     index = lines.index(dag_name_line)
     lines[index] = dag_name_line.format(number=number)
